@@ -9,6 +9,7 @@ class Body():
         self.mass = mass
         self.velocity = velocity
 
+
 def Populate_List(length1, filling, length2 = None):
 
     list = []
@@ -154,12 +155,12 @@ def run_sim(body_list, field):
 
 def generate_bodies(field):
 
-    starting_velocity_scalar = 100
+    starting_velocity_scalar = 1000
     body_count = 100
     body_list = []
 
     for i in range(body_count):
-        mass = 100000000000000000
+        mass = 1000000000000000000
         starting_positions = []
 
         while True:

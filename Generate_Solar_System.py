@@ -3,33 +3,48 @@ import math
 
 class Solar_System:
     def __init__(self, dims):
+
+        #general rules of the universe
         self.dims = dims
-        self.bodies = self.Generate_Solar_System()
         self.gravitational_constant = 0.00000000006674
+
+        #generate celestial bodies and attach as attributes
+        self.bodies = self.Generate_Solar_System()
 
 
 
 
     def Generate_Solar_System(self):
 
+        #new_solar_system list holds bodies
         new_solar_system = []
+
+        #planet_count here
         planet_count = randint(1, 5)
-        Star = self.Generate_Star()
-        new_solar_system.append(Star)
 
+        #star count here
+        star_count = 1
+
+        #Generate stars and append to list
+        for i in range(star_count):
+            Star = self.Generate_Star()
+            new_solar_system.append(Star)
+
+        #generate planets
         for i in range(planet_count):
-
+            #todo update orbital foci to accomodate binary systems
             New_Planet = self.Generate_Planet(i, Star, planet_count)
             new_solar_system.append(New_Planet)
 
+            #generate satellites for new planet
             moon_count = [0, 1, 2, 3]
 
             for j in range(choice(moon_count)):
                 New_Satellite = self.Generate_Satellite(i, j, New_Planet)
                 new_solar_system.append(New_Satellite)
 
+        #return list of bodies
         return new_solar_system
-
 
 
     def Generate_Satellite(self, i, j, New_Planet):
@@ -48,7 +63,6 @@ class Solar_System:
         New_Satellite = Planet(name, actor_type, size, coords, vector, velocity, mass, density, orbiting, orbital_radius)
 
         return New_Satellite
-
 
 
     def Generate_Planet(self, i, Star, planet_count):
@@ -100,6 +114,7 @@ class Actor():
         self.actor_type = actor_type
         self.size = size
         self.coords = coords
+        self.new_coords = coords
         self.vector = vector
         self.velocity = velocity
         self.mass = mass

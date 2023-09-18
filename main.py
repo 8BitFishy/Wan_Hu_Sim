@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
     print(f"Generated a {p} planet, {s} moon solar system")
 
-
+    #todo launch solar system simulation
 
     #TODO player launches rocket
 
