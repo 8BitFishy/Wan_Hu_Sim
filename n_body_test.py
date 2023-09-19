@@ -35,7 +35,7 @@ def Get_Force(actor1, actor2):
     r_x = actor2.coords[0] - actor1.coords[0]
     r_y = actor2.coords[1] - actor1.coords[1]
 
-    r = math.sqrt(abs(r_x**2 + r_y**2))
+    r = math.sqrt(abs(r_x**2 + r_y**2)) + 1000
 
     force = G * (actor1.mass * actor2.mass)/((r**2))
 
@@ -150,7 +150,13 @@ def run_sim(body_list, field):
             else:
                 body_list[i].new_coords = body_list[i].coords
 
-        plot_bodies(body_list, field, fig, ax)
+        if (t) % 2 == 0:
+
+            clear = True
+        else:
+            clear = False
+
+        plot_bodies(body_list, field, fig, ax, clear)
 
 
 def generate_bodies(field):
@@ -182,13 +188,15 @@ def generate_bodies(field):
 
         body_list.append(new_body)
 
+
+
     return body_list
 
 
 
 
 
-def plot_bodies(body_list, field, fig, ax):
+def plot_bodies(body_list, field, fig, ax, clear):
 
     field_multiplier = 1
 
@@ -209,9 +217,9 @@ def plot_bodies(body_list, field, fig, ax):
                     star_x = body_list[i].coords[c]
                 elif c == 1:
                     star_y = body_list[i].coords[c]
-
-    ax.clear()
-    ax.scatter(x_points, y_points)
+    if clear:
+        ax.clear()
+    ax.scatter(x_points, y_points, color="blue")
     ax.scatter(star_x, star_y, c="red")
     plt.xlim(-field[0]*field_multiplier, field[0]*field_multiplier)
     plt.ylim(-field[0]*field_multiplier, field[1]*field_multiplier)

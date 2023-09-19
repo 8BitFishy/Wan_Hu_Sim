@@ -31,7 +31,7 @@ def Get_Force(actor1, actor2):
     r_x = actor2.coords[0] - actor1.coords[0]
     r_y = actor2.coords[1] - actor1.coords[1]
 
-    r = math.sqrt(abs(r_x**2 + r_y**2))
+    r = math.sqrt(abs(r_x**2 + r_y**2)) + 100
 
     force = G * (actor1.mass * actor2.mass)/((r**2))
 
@@ -106,7 +106,7 @@ def Get_Coords(actor, timestep):
 
 
 def Set_Starting_Orbit(satellite_count, dimension, i):
-    #print(f"Generating Orbital Radius using i = {i}, dim = {dimension}, count = {satellite_count+1}")
+    print(f"Generating Orbital Radius using i = {i}, dim = {dimension}, count = {satellite_count+1}")
 
     #roughly even spread of orbits across system dimension
     orbit_midline = (i + 1) * (dimension / (satellite_count+1))
@@ -115,7 +115,7 @@ def Set_Starting_Orbit(satellite_count, dimension, i):
     #orbital radius randomisation (10% either way)
     orbital_radius = randint(int(0.9 * orbit_midline), (int(1.1 * orbit_midline)))
 
-    #print(f"Orbital radius of {orbital_radius} generated")
+    print(f"Orbital radius of {orbital_radius} generated")
 
     return orbital_radius
 
@@ -229,13 +229,13 @@ def run_sim(body_list, field):
 
 
                 body_list[i] = Get_Coords(body_list[i], timestep)
-                print(f"{body_list[i].name} - coords = {body_list[i].coords}, v = {body_list[i].velocity}")
+                #print(f"{body_list[i].name} - coords = {body_list[i].coords}, v = {body_list[i].velocity}")
 
 
             else:
                 body_list[i].new_coords = body_list[i].coords
 
-        if (t) % 5 == 0:
+        if (t) % 1 == 0:
 
             clear = True
         else:

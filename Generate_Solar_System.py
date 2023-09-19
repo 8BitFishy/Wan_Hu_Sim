@@ -8,7 +8,6 @@ class Solar_System:
         #general rules of the universe
         self.dims = dims
 
-
         #generate celestial bodies and attach as attributes
         self.bodies = self.Generate_Solar_System()
 
@@ -21,7 +20,7 @@ class Solar_System:
         new_solar_system = []
         #planet_count here
         planet_count = 1
-        max_moons_per_planet = 1
+        max_moons_per_planet = 3
         #star count here
         star_count = 1
 
@@ -42,7 +41,7 @@ class Solar_System:
             new_solar_system.append(New_Planet)
 
             #generate satellites for new planet
-            moon_count = randint(max_moons_per_planet, max_moons_per_planet)
+            moon_count = randint(0, max_moons_per_planet)
             print(f"Generating {moon_count} moons for {New_Planet.name}")
 
             for j in range(moon_count):
@@ -63,6 +62,7 @@ class Solar_System:
             coords = [0, 0]
             velocity = [0, 0]
             mass = 1000000000
+            body_number = i
 
         else:
             if actor_type == "Satellite":
@@ -72,6 +72,7 @@ class Solar_System:
                 mass = 10000
                 dimension = self.dims[0] / 10
                 orbit_adjuster = orbital_focus.velocity
+                body_number = j
 
 
             else:
@@ -81,10 +82,11 @@ class Solar_System:
                 size = randint(10, 44)
                 mass = 100000000
                 dimension = self.dims[0]/2
+                body_number = i
 
 
             print(f"Running physics engine calcs...")
-            coords, velocity = Physics_Engine.Set_Starting_Values(orbital_focus, count, dimension, i)
+            coords, velocity = Physics_Engine.Set_Starting_Values(orbital_focus, count, dimension, body_number)
 
             velocity[0] = velocity[0] + orbit_adjuster[0]
             velocity[1] = velocity[1] + orbit_adjuster[1]
