@@ -1,0 +1,11 @@
+star_mass: 10000000
+planet_mass: 1000000
+satellite_mass: 10000
+
+star_count: 1
+planet_count: 2
+satellite_count: 0
+
+G: 0.00000000006674
+G_scalar: 1000000000
+softening: 50
