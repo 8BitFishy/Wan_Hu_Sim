@@ -187,19 +187,12 @@ def Set_Starting_Velocity_Vector(coords, orbital_focus, orbital_radius, logger, 
     else:
         m1 = y_offset / x_offset
         m2 = -1/m1
-        vector = [1, m2]
         #print(f"Gradient of radius {m1}")
         #print(f"Gradient of velocity vector {m2}")
         logger.Write_To_Log(f"Gradient of radius = {m1}")
         logger.Write_To_Log(f"Gradient of velocity vector = {m2}")
 
-    #print(f"Velocity vector {vector} generated")
-
-    vector_c = math.sqrt(vector[1]**2 + vector[0]**2)
-
-    velocity_scaler = velocity/vector_c
-
-    velocity = [vector[0]*velocity_scaler, vector[1]*velocity_scaler]
+    velocity = Vectorise(velocity, 1, m2)
     #print(f"Velocity {velocity} generated")
     logger.Write_To_Log(f"Velocity = {velocity}")
 
